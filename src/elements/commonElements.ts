@@ -1,7 +1,14 @@
+import { PropOptions } from './../interfaces';
 import generateElement from './generateElement';
 
-export const div = (...args: any) => generateElement('div', ...args);
-export const img = (...args: any) => generateElement('img', ...args);
-export const span = (...args: any) => generateElement('span', ...args);
-export const p = (...args: any) => generateElement('p', ...args);
-export const a = (...args: any) => generateElement('a', ...args);
+// interface Args {
+//     propOption: PropOptions;
+//     otherChildren: any[]
+// }
+
+export const article = (propOption: PropOptions, ...otherChildren: any) => generateElement('article', propOption, ...otherChildren);
+export const div = (propOption: PropOptions, ...otherChildren: any) => generateElement('div', propOption, ...otherChildren);
+export const img = (propOption: PropOptions, ...otherChildren: any) => generateElement('img', propOption, ...otherChildren);
+export const span = (propOption: PropOptions, ...otherChildren: any) => generateElement('span', propOption, ...otherChildren);
+export const a = (propOption: PropOptions, ...otherChildren: any) => generateElement('a', propOption, ...otherChildren);
+export const p = (propOption: PropOptions, ...otherChildren: any) => generateElement('p', propOption, ...otherChildren);
