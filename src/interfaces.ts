@@ -25,3 +25,8 @@ export interface HttpResult {
     id: string;
     list: PublisherContentMetadata[];
 }
+export interface PropOptions {
+    attributes ? : Record < string, string | boolean > ;
+    styles ? : Partial < CSSStyleDeclaration > ;
+    text ? : string;
+}
