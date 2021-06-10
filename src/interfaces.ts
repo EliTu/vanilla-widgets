@@ -5,7 +5,7 @@ interface ThumbnailObject {
     url: string;
 }
 
-interface PublisherContentMetadata {
+export interface PublisherContentMetadata {
     branding: string;
     type: TypeOptions;
     name: string;
