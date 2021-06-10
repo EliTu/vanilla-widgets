@@ -12,6 +12,7 @@
 
 #app {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -35,4 +36,9 @@
       font-weight: bold;
     }
   }
+}
+
+#widget-content {
+  margin-top: 0.8rem;
+  display: flex;
 }
