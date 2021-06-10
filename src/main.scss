@@ -22,7 +22,7 @@
 }
 
 .widget-header {
-  width: 90%;
+  width: 70%;
   display: flex;
   justify-content: space-between;
   border-bottom: 2px solid black;
@@ -39,6 +39,8 @@
 }
 
 #widget-content-container {
+  width: 70%;
+  border: 1px solid gray;
   margin-top: 0.8rem;
   display: flex;
 }

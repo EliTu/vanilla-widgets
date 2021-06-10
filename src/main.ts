@@ -11,6 +11,7 @@ import {
   span,
   article
 } from './elements/commonElements';
+import './elements/elements.scss';
 
 const app = document.querySelector < HTMLDivElement > ('#app');
 const widgetContent = document.querySelector < HTMLElement > ('#widget-content-container');
@@ -23,39 +24,34 @@ function generatePublisherContentItem(publisherData: PublisherContentMetadata) {
         class: 'item-container',
         'data-testid': 'item-article'
       },
-      styles: {
-        display: 'flex',
-        flexDirection: 'column'
-      }
     },
-    img({
-      attributes: {
-        width: '200',
-        height: '200',
-        src: publisherData.thumbnail[0].url,
-        alt: publisherData.name
-      }
-    }),
+    a({
+        attributes: {
+          href: publisherData.url,
+          target: '_blank',
+          rel: 'noopener noreferrer',
+          class: 'image-link-container'
+        }
+      },img({
+        attributes: {
+          class: 'item-thumbnail-image',
+          src: publisherData.thumbnail[0].url,
+          alt: publisherData.name
+        }
+      })),
     div({
         attributes: {
           class: 'text-content-container'
         }
-      }, p({
-        styles: {
-          fontSize: '13px',
-          color: 'marine'
-        },
+      },
+      p({
         text: publisherData.name
       }),
       p({
-        styles: {
-          fontSize: '8px'
-        },
-        text: publisherData.branding
+        text: `by ${publisherData.branding}`
       }))
   )
 
-  // article.appendChild(img)
   return contentItemNodeTree;
 }
 

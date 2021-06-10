@@ -1,0 +1,38 @@
+.item-container{ 
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.9rem;
+
+    .image-link-container {
+        width: 90%;
+        height: 90%;
+        display: flex;
+        justify-content: center;
+        
+        .item-thumbnail-image {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .text-content-container {
+        display: flex;
+        width: 90%;
+        height: 80%;
+        justify-content: space-between;
+        flex-direction: column;
+        margin-left: 0.8rem;
+
+         p:nth-child(1) {
+             font-size: 15px;
+         }
+
+         p:nth-child(2) {
+             font-size: 12px;
+             font-weight: bold;
+         }
+    }
+}

@@ -16,7 +16,7 @@ export interface PublisherContentMetadata {
     origin: OriginOptions;
     views: string;
     rating: string;
-    url: URL;
+    url: string;
     categories: string[];
     thumbnail: ThumbnailObject[]
 }
