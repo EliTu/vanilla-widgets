@@ -38,7 +38,8 @@ function generatePublisherContentItem(publisherData: PublisherContentMetadata) {
           src: publisherData.thumbnail[0].url,
           alt: publisherData.name
         }
-      })),
+      })
+      ),
     div({
         attributes: {
           class: 'text-content-container'
@@ -49,7 +50,8 @@ function generatePublisherContentItem(publisherData: PublisherContentMetadata) {
       }),
       p({
         text: `by ${publisherData.branding}`
-      }))
+      })
+      )
   )
 
   return contentItemNodeTree;
@@ -58,8 +60,7 @@ function generatePublisherContentItem(publisherData: PublisherContentMetadata) {
 if (app) {
   (async function () {
     const res: Promise < HttpResult > = (await fetch(API_URL)).json();
-    const data = await res;
-    const dataList = data.list;
+    const { list: dataList  } = await res;
 
     if (widgetContent) {
       for (const data of dataList) {
@@ -67,6 +68,5 @@ if (app) {
         widgetContent.append(publisherContentItem);
       }
     }
-
   })()
 }
