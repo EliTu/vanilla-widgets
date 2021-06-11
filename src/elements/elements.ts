@@ -1,7 +1,7 @@
 import {
     PropOptions
-} from './../interfaces';
-import generateElement from './generateElement';
+} from '../interfaces';
+import generateElement from '../utils/generateElement';
 
 export const header = (propOption: PropOptions, ...otherChildren: HTMLElement[]) => generateElement('header', propOption, ...otherChildren);
 export const section = (propOption: PropOptions, ...otherChildren: HTMLElement[]) => generateElement('section', propOption, ...otherChildren);

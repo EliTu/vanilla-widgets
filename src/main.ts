@@ -8,7 +8,7 @@ import buildUrl from './utils/buildUrl';
 import {
   generatePublisherContentItem,
   generateWidgetSection
-} from './elements/generateContent';
+} from './utils/widgetContentUtils';
 
 const app = document.querySelector < HTMLDivElement > ('#app');
 const urlParams: UrlParams = {

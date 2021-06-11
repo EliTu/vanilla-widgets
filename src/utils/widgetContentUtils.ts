@@ -12,7 +12,7 @@ import {
     header,
     h2,
     section
-} from './commonElements';
+} from '../elements/elements';
 
 export function generateWidgetSection(origin: PublisherContentMetadata['origin']) {
     return section({
@@ -22,7 +22,7 @@ export function generateWidgetSection(origin: PublisherContentMetadata['origin']
                 'data-testid': 'widget-section'
             }
         },
-        generateContentHeader(origin),
+        generateWidgetHeader(origin),
         div({
             attributes: {
                 class: 'widget-content-container',
@@ -32,7 +32,7 @@ export function generateWidgetSection(origin: PublisherContentMetadata['origin']
     );
 }
 
-export function generateContentHeader(origin: OriginOptions) {
+export function generateWidgetHeader(origin: OriginOptions) {
     return header({
             attributes: {
                 class: 'widget-header',
