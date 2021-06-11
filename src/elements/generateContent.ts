@@ -10,8 +10,27 @@ import {
     span,
     article,
     header,
-    h2
+    h2,
+    section
 } from './commonElements';
+
+export function generateWidgetSection(origin: PublisherContentMetadata['origin']) {
+    return section({
+            attributes: {
+                class: 'widget-section-container',
+                'data-origin': origin,
+                'data-testid': 'widget-section'
+            }
+        },
+        generateContentHeader(origin),
+        div({
+            attributes: {
+                class: 'widget-content-container',
+                'data-testid': 'widget-content-container'
+            }
+        })
+    );
+}
 
 export function generateContentHeader(origin: OriginOptions) {
     return header({

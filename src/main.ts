@@ -4,14 +4,10 @@ import {
   HttpResult,
   UrlParams
 } from './interfaces';
-import {
-  div,
-  section,
-} from './elements/commonElements';
 import buildUrl from './utils/buildUrl';
 import {
-  generateContentHeader,
-  generatePublisherContentItem
+  generatePublisherContentItem,
+  generateWidgetSection
 } from './elements/generateContent';
 
 const app = document.querySelector < HTMLDivElement > ('#app');
@@ -26,32 +22,20 @@ if (app) {
   document.addEventListener('DOMContentLoaded', async () => {
     const url = buildUrl(urlParams);
     const res: Promise < HttpResult > = (await fetch(url)).json();
-    const { list: dataList } = await res;
+    const {
+      list: dataList
+    } = await res;
 
     for (const data of dataList) {
-      let sectionContainer = document.querySelector(`[data-origin=${data.origin}]`);
+      let widgetOriginSection = document.querySelector(`[data-origin=${data.origin}]`);
 
-      if (!sectionContainer) {
-        sectionContainer = section({
-            attributes: {
-              class: 'widget-section-container',
-              'data-origin': data.origin,
-              'data-testid': 'widget-section'
-            }
-          },
-          generateContentHeader(data.origin),
-          div({
-            attributes: {
-              class: 'widget-content-container',
-              'data-testid': 'widget-content-container'
-            }
-          })
-        );
+      if (!widgetOriginSection) {
+        widgetOriginSection = generateWidgetSection(data.origin);
 
-        app.append(sectionContainer);
+        app.append(widgetOriginSection);
       }
 
-      const contentContainer = sectionContainer.querySelector('.widget-content-container') !;
+      const contentContainer = widgetOriginSection.querySelector('.widget-content-container') !;
       const publisherContentItem = generatePublisherContentItem(data);
 
       contentContainer.append(publisherContentItem);
