@@ -10,9 +10,9 @@ import generateElement from '../utils/generateElement';
  */
 export const ELEMENT_TYPES_LIST = ['header', 'section', 'article', 'div', 'img', 'span', 'h2', 'a', 'p'];
 
-// Loop over the element type list and call the generateElement function on each to create a valid HTML
-// node. Using destructuring, assign them a value by the same name.
-const [ header, section, article, div, img, span, h2, a, p ] = ELEMENT_TYPES_LIST.map(element => 
+// Map over the element type list and call the generateElement function on each to create a callable element
+// function.Using destructuring, assign them a value by the same name.
+const [ header, section, article, div, img, span, h2, a, p, aaa ] = ELEMENT_TYPES_LIST.map(element => 
     (propOption: PropOptions, ...childElements: ChildrenType) => 
     generateElement((element as keyof HTMLElementTagNameMap), propOption, ...childElements))
 

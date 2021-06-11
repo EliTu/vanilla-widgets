@@ -21,24 +21,29 @@ const urlParams: UrlParams = {
 if (app) {
   document.addEventListener('DOMContentLoaded', async () => {
     const url = buildUrl(urlParams);
-    const res: Promise < HttpResult > = (await fetch(url)).json();
-    const {
-      list: dataList
-    } = await res;
 
-    for (const data of dataList) {
-      let widgetOriginSection = document.querySelector<HTMLElement>(`[data-origin=${data.origin}]`);
+    try {
+      const res: Promise < HttpResult > = (await fetch(url)).json();
+      const {
+        list: dataList
+      } = await res;
 
-      if (!widgetOriginSection) {
-        widgetOriginSection = generateWidgetSection(data.origin);
+      for (const data of dataList) {
+        let widgetOriginSection = document.querySelector < HTMLElement > (`[data-origin=${data.origin}]`);
 
-        app.append(widgetOriginSection);
+        if (!widgetOriginSection) {
+          widgetOriginSection = generateWidgetSection(data.origin);
+
+          app.append(widgetOriginSection);
+        }
+
+        const contentContainer = widgetOriginSection.querySelector < HTMLElement > ('.widget-content-container') !;
+        const publisherContentItem = generatePublisherContentItem(data);
+
+        contentContainer.append(publisherContentItem);
       }
-
-      const contentContainer = widgetOriginSection.querySelector<HTMLElement>('.widget-content-container')!;
-      const publisherContentItem = generatePublisherContentItem(data);
-
-      contentContainer.append(publisherContentItem);
+    } catch (error) {
+      console.error(error);
     }
   });
 }

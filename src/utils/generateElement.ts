@@ -3,9 +3,13 @@ import {
     setElementChildren,
     setElementProps,
 } from "./generateElementHelpers";
+import isValidHTMLType from "./isValidHTMLType";
 
 export default function generateElement < Type extends keyof HTMLElementTagNameMap > (type: Type, propOptions: PropOptions, ...childElements: ChildrenType): HTMLElementTagNameMap[Type] {
-    const element = document.createElement(type);
+    if(!isValidHTMLType(type)) {
+        console.warn(`Attempting to assign an invalid HTML element type: ${type}.`);
+    }
+    const element = document.createElement<Type>(type);
 
     if(Object.keys(propOptions).length) setElementProps(element, propOptions);
 
