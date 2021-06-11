@@ -14,6 +14,11 @@ import {
     section
 } from '../elements/elements';
 
+/**
+ * Generates a section node that contains the widget's header and the content container.
+ * @param origin - The publisher content origin type.
+ * @returns HTMLElement.
+ */
 export function generateWidgetSection(origin: PublisherContentMetadata['origin']) {
     return section({
             attributes: {
@@ -32,6 +37,11 @@ export function generateWidgetSection(origin: PublisherContentMetadata['origin']
     );
 }
 
+/**
+ * Generates a header node with the relevant heading text.
+ * @param origin - The publisher content origin type.
+ * @returns HTMLElement.
+ */
 export function generateWidgetHeader(origin: OriginOptions) {
     const isSponsored = origin === OriginOptions.SPONSORED;
     return header({
@@ -51,6 +61,11 @@ export function generateWidgetHeader(origin: OriginOptions) {
             })))
 }
 
+/**
+ * Generates an interactive widget item with the relevant publisher data as the content.
+ * @param param - The publisher data object.
+ * @returns HTMLElement.
+ */
 export function generatePublisherContentItem({
     url,
     name,
