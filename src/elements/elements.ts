@@ -10,10 +10,14 @@ import generateElement from '../utils/generateElement';
  */
 export const ELEMENT_TYPES_LIST = ['header', 'section', 'article', 'div', 'img', 'span', 'h2', 'a', 'p'];
 
-// Map over the element type list and call the generateElement function on each to create a callable function
-// with the preset element. Using destructuring, assign them a value by the same name.
-const [ header, section, article, div, img, span, h2, a, p ] = ELEMENT_TYPES_LIST.map(element => 
-    (propOption: PropOptions, ...childElements: ChildrenType) => 
+/**
+ * ap over the element type list and with the help of some closure magic to pass around arguments, 
+ * generateElement function, on each to create a callable function with a preset element type, 
+ * that can also accept other element functions as children. 
+ * Using destructuring, assign each to a variable by the same name.
+ */
+const [header, section, article, div, img, span, h2, a, p] = ELEMENT_TYPES_LIST.map(element =>
+    (propOption: PropOptions, ...childElements: ChildrenType) =>
     generateElement((element as keyof HTMLElementTagNameMap), propOption, ...childElements))
 
 // Don't forget to export any newly added elements!

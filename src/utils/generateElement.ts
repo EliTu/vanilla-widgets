@@ -6,8 +6,8 @@ import {
 import isValidHTMLType from "./isValidHTMLType";
 
 /**
- * Generates an HTML element node with the provided attributes, styles and text. In case nested child 
- * elements are provided as well, they will be appended to the element. 
+ * a lightweight, flexible function that generates an HTML element node with the provided attributes, styles and 
+ * text. In case nested child elements are provided as well, they will be appended to the element. 
  * @param type a string type that suppose to represent a valid HTML tag name.
  * @param propOptions @see PropOptions.
  * @param childElements a list of HTML elements to nest inside the element.

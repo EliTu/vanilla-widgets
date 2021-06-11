@@ -29,10 +29,10 @@ if (app) {
       } = await res;
 
       for (const data of list) {
-        // first check if a section with the designated origin value already exists
+        // first check if a section with the designated origin value already exists, if so use it
         let widgetOriginSection = document.querySelector < HTMLElement > (`[data-origin=${data.origin}]`);
 
-        // if not, create a new section element for the new origin
+        // if not, create a new section element for the new origin and use it
         if (!widgetOriginSection) {
           widgetOriginSection = generateWidgetSection(data.origin);
 
@@ -41,7 +41,7 @@ if (app) {
 
         // get the widget content container of the widget's section element
         const contentContainer = widgetOriginSection.querySelector < HTMLElement > ('.widget-content-container') !;
-        
+
         // generate the content item node with the publisher's data and append it to the content container
         const publisherContentItem = generatePublisherContentItem(data);
         contentContainer.append(publisherContentItem);
