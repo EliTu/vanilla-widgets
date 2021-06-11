@@ -2,7 +2,7 @@ import { UrlParams } from "../interfaces";
 
 /**
  * a util function that generates a URL string with the correct URL params build in.
- * @param param - an object with the possible URL param options. 
+ * @param param an object with the possible URL param options. 
  * @returns string
  */
 export default function buildUrl({apiKey, appType, publisherId, sourceId}: UrlParams) {

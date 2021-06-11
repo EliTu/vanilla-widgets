@@ -1,8 +1,15 @@
+/**
+ * an enum that contains all the possible content origin options. Can be expanded in the future
+ * to contain more types of origin values.
+ */
 export enum OriginOptions {
     SPONSORED = 'sponsored',
     ORGANIC = 'organic'
 }
 
+/**
+ * an enum that contain all the possible publisher content types.
+ */
 enum TypeOptions {
     VIDEO = 'video'
 }
@@ -27,6 +34,12 @@ export interface PublisherContentMetadata {
     thumbnail: ThumbnailObject[]
 }
 
+export interface UrlParams {
+    publisherId: string;
+    appType: string;
+    apiKey: string;
+    sourceId: string;
+}
 export interface HttpResult {
     id: string;
     list: PublisherContentMetadata[];
@@ -35,20 +48,7 @@ export interface HttpResult {
 export type ChildrenType = HTMLElement[];
 export interface PropOptions {
     attributes ? : Record < string, string | boolean > ;
-    styles?: Partial < CSSStyleDeclaration > ;
-
-    /**
-     * @memberof PropOptions
-     * @member text - a string text to pass to a node
-     */
-    text?: string;
-
-    afterEndText?: string;
-}
-
-export interface UrlParams {
-    publisherId: string;
-    appType: string;
-    apiKey: string;
-    sourceId: string;
+    styles ? : Partial < CSSStyleDeclaration > ;
+    text ? : string;
+    afterEndText ? : string;
 }
