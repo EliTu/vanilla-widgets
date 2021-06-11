@@ -7,7 +7,6 @@ export function setAttributes(element: HTMLElement, attributes: PropOptions['att
         if(typeof value === 'boolean') element.setAttribute(attributeNameKey, ''); // for example <button disabled>
         else element.setAttribute(attributeNameKey, (value as string));
     }
-    
 }
 
 export function setStyles(element: HTMLElement, styles: PropOptions['styles']) {

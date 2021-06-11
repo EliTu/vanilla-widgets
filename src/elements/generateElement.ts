@@ -9,7 +9,7 @@ export default function generateElement < Type extends keyof HTMLElementTagNameM
 
     if(Object.keys(propOptions).length) setElementProps(element, propOptions);
 
-    // check the otherChildren param to handle nested elements
+    // check the otherChildren param to handle nested elements and afterEnd strings
     if (childElements && Array.isArray(childElements)) {
         setElementChildren(element, childElements, propOptions.afterEndText);
     }
