@@ -2,7 +2,8 @@ import './main.scss';
 import {
   HttpResult,
   OriginOptions,
-  PublisherContentMetadata
+  PublisherContentMetadata,
+  UrlParams
 } from './interfaces';
 import {
   a,
@@ -16,9 +17,9 @@ import {
   h2
 } from './elements/commonElements';
 import './elements/elements.scss';
+import buildUrl from './utils/buildUrl';
 
 const app = document.querySelector < HTMLDivElement > ('#app');
-const API_URL = 'http://api.taboola.com/1.0/json/taboola-templates/recommendations.get?app.type=desktop&app.apikey=f9040ab1b9c802857aa783c469d0e0ff7e7366e4&count=4&source.type=video&source.id=214321562187&source.url=http://www.site.com/videos/214321562187.html';
 
 function generatePublisherContentItem(publisherData: PublisherContentMetadata) {
   // console.log(publisherData); // TODO: Destructure the parameter
@@ -79,7 +80,14 @@ function generateContentHeader(origin: OriginOptions) {
 
 if (app) {
   document.addEventListener('DOMContentLoaded', async () => {
-    const res: Promise < HttpResult > = (await fetch(API_URL)).json();
+    const urlParams: UrlParams = {
+      apiKey: 'f9040ab1b9c802857aa783c469d0e0ff7e7366e4',
+      appType: 'desktop',
+      publisherId: 'taboola-templates',
+      sourceId: '214321562187'
+    }
+    const url = buildUrl(urlParams);
+    const res: Promise < HttpResult > = (await fetch(url)).json();
     const {
       list: dataList
     } = await res;

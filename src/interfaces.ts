@@ -2,7 +2,10 @@ export enum OriginOptions {
     SPONSORED = 'sponsored',
     ORGANIC = 'organic'
 }
-type TypeOptions = 'video';
+
+enum TypeOptions {
+    VIDEO = 'video'
+}
 
 interface ThumbnailObject {
     url: string;
@@ -39,4 +42,11 @@ export interface PropOptions {
     text?: string;
 
     afterEndText?: string;
+}
+
+export interface UrlParams {
+    publisherId: string;
+    appType: string;
+    apiKey: string;
+    sourceId: string;
 }
