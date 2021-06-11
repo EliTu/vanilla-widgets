@@ -27,7 +27,7 @@ if (app) {
     } = await res;
 
     for (const data of dataList) {
-      let widgetOriginSection = document.querySelector(`[data-origin=${data.origin}]`);
+      let widgetOriginSection = document.querySelector<HTMLElement>(`[data-origin=${data.origin}]`);
 
       if (!widgetOriginSection) {
         widgetOriginSection = generateWidgetSection(data.origin);
@@ -35,7 +35,7 @@ if (app) {
         app.append(widgetOriginSection);
       }
 
-      const contentContainer = widgetOriginSection.querySelector('.widget-content-container') !;
+      const contentContainer = widgetOriginSection.querySelector<HTMLElement>('.widget-content-container')!;
       const publisherContentItem = generatePublisherContentItem(data);
 
       contentContainer.append(publisherContentItem);

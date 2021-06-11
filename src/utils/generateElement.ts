@@ -1,10 +1,10 @@
-import { PropOptions } from "../interfaces";
+import { ChildrenType, PropOptions } from "../interfaces";
 import {
     setElementChildren,
     setElementProps,
 } from "./generateElementHelpers";
 
-export default function generateElement < Type extends keyof HTMLElementTagNameMap > (type: Type, propOptions: PropOptions, ...childElements: HTMLElement[]): HTMLElementTagNameMap[Type] {
+export default function generateElement < Type extends keyof HTMLElementTagNameMap > (type: Type, propOptions: PropOptions, ...childElements: ChildrenType): HTMLElementTagNameMap[Type] {
     const element = document.createElement(type);
 
     if(Object.keys(propOptions).length) setElementProps(element, propOptions);

@@ -33,6 +33,7 @@ export function generateWidgetSection(origin: PublisherContentMetadata['origin']
 }
 
 export function generateWidgetHeader(origin: OriginOptions) {
+    const isSponsored = origin === OriginOptions.SPONSORED;
     return header({
             attributes: {
                 class: 'widget-header',
@@ -40,13 +41,13 @@ export function generateWidgetHeader(origin: OriginOptions) {
             }
         },
         h2({
-            text: origin === OriginOptions.SPONSORED ? 'Ad content' : 'More content for you'
+            text: isSponsored ? 'Ad content' : 'More content for you'
         }),
         p({
-                text: 'by '
+                text: isSponsored ? 'by ' : ''
             },
             span({
-                text: 'Taboola'
+                text: isSponsored ? 'Taboola' : ''
             })))
 }
 

@@ -31,6 +31,8 @@ export interface HttpResult {
     id: string;
     list: PublisherContentMetadata[];
 }
+
+export type ChildrenType = HTMLElement[];
 export interface PropOptions {
     attributes ? : Record < string, string | boolean > ;
     styles?: Partial < CSSStyleDeclaration > ;

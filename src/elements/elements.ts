@@ -1,14 +1,30 @@
 import {
+    ChildrenType,
     PropOptions
 } from '../interfaces';
 import generateElement from '../utils/generateElement';
 
-export const header = (propOption: PropOptions, ...otherChildren: HTMLElement[]) => generateElement('header', propOption, ...otherChildren);
-export const section = (propOption: PropOptions, ...otherChildren: HTMLElement[]) => generateElement('section', propOption, ...otherChildren);
-export const article = (propOption: PropOptions, ...otherChildren: HTMLElement[]) => generateElement('article', propOption, ...otherChildren);
-export const div = (propOption: PropOptions, ...otherChildren: HTMLElement[]) => generateElement('div', propOption, ...otherChildren);
-export const img = (propOption: PropOptions, ...otherChildren: HTMLElement[]) => generateElement('img', propOption, ...otherChildren);
-export const span = (propOption: PropOptions, ...otherChildren: HTMLElement[]) => generateElement('span', propOption, ...otherChildren);
-export const h2 = (propOption: PropOptions, ...otherChildren: HTMLElement[]) => generateElement('h2', propOption, ...otherChildren);
-export const a = (propOption: PropOptions, ...otherChildren: HTMLElement[]) => generateElement('a', propOption, ...otherChildren);
-export const p = (propOption: PropOptions, ...otherChildren: HTMLElement[]) => generateElement('p', propOption, ...otherChildren);
+/**
+ * a constant list of HTML element types to generate with the generateElement function.
+ * To generate more element types, simply add the type (tag name) as a string to the list.
+ */
+export const ELEMENT_TYPES_LIST = ['header', 'section', 'article', 'div', 'img', 'span', 'h2', 'a', 'p'];
+
+// Loop over the element type list and call the generateElement function on each to create a valid HTML
+// node. Using destructuring, assign them a value by the same name.
+const [ header, section, article, div, img, span, h2, a, p ] = ELEMENT_TYPES_LIST.map(element => 
+    (propOption: PropOptions, ...childElements: ChildrenType) => 
+    generateElement((element as keyof HTMLElementTagNameMap), propOption, ...childElements))
+
+// Don't forget to export any newly added elements!
+export {
+    header,
+    section,
+    article,
+    div,
+    img,
+    span,
+    h2,
+    a,
+    p
+};

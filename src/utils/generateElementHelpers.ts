@@ -1,4 +1,4 @@
-import { PropOptions } from "../interfaces";
+import { ChildrenType, PropOptions } from "../interfaces";
 export function setAttributes(element: HTMLElement, attributes: PropOptions['attributes']) {
     if(!attributes || !element) return;
     
@@ -34,7 +34,7 @@ export function setElementProps(element:HTMLElement, { attributes, styles, text 
     if(text) appendText(element, text);
 }
 
-export function setElementChildren(element: HTMLElement, childElements: HTMLElement[], afterEndText?: string) {
+export function setElementChildren(element: HTMLElement, childElements: ChildrenType, afterEndText?: string) {
     for (const child of childElements) {
         // first append the child to the parent
         element.append(child);
