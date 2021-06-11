@@ -11,7 +11,7 @@ import generateElement from '../utils/generateElement';
 export const ELEMENT_TYPES_LIST = ['header', 'section', 'article', 'div', 'img', 'span', 'h2', 'a', 'p'];
 
 /**
- * ap over the element type list and with the help of some closure magic to pass around arguments, 
+ * Map over the element type list and with the help of some closure magic to pass around arguments, 
  * generateElement function, on each to create a callable function with a preset element type, 
  * that can also accept other element functions as children. 
  * Using destructuring, assign each to a variable by the same name.

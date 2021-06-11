@@ -7,7 +7,7 @@ import {
 import buildUrl from './utils/buildUrl';
 import {
   generatePublisherContentItem,
-  generateWidgetSection
+  generateWidgetSectionByOrigin
 } from './utils/widgetContentUtils';
 
 const app = document.querySelector < HTMLDivElement > ('#app');
@@ -34,7 +34,7 @@ if (app) {
 
         // if not, create a new section element for the new origin and use it
         if (!widgetOriginSection) {
-          widgetOriginSection = generateWidgetSection(data.origin);
+          widgetOriginSection = generateWidgetSectionByOrigin(data.origin);
 
           app.append(widgetOriginSection);
         }

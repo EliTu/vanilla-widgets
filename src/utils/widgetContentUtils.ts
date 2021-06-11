@@ -19,7 +19,7 @@ import {
  * @param origin The publisher content origin type.
  * @returns HTMLElement.
  */
-export function generateWidgetSection(origin: PublisherContentMetadata['origin']) {
+export function generateWidgetSectionByOrigin(origin: PublisherContentMetadata['origin']) {
     return section({
             attributes: {
                 class: 'widget-section-container',
@@ -27,7 +27,7 @@ export function generateWidgetSection(origin: PublisherContentMetadata['origin']
                 'data-testid': 'widget-section'
             }
         },
-        generateWidgetHeader(origin),
+        generateWidgetHeaderByOrigin(origin),
         div({
             attributes: {
                 class: 'widget-content-container',
@@ -42,7 +42,7 @@ export function generateWidgetSection(origin: PublisherContentMetadata['origin']
  * @param origin The publisher content origin type.
  * @returns HTMLElement.
  */
-export function generateWidgetHeader(origin: OriginOptions) {
+export function generateWidgetHeaderByOrigin(origin: OriginOptions) {
     const isSponsored = origin === OriginOptions.SPONSORED;
     return header({
             attributes: {
