@@ -58,7 +58,7 @@ function generatePublisherContentItem(publisherData: PublisherContentMetadata) {
 }
 
 if (app) {
-  (async function () {
+  document.addEventListener('DOMContentLoaded', async () => {    
     const res: Promise < HttpResult > = (await fetch(API_URL)).json();
     const { list: dataList  } = await res;
 
@@ -68,5 +68,5 @@ if (app) {
         widgetContent.append(publisherContentItem);
       }
     }
-  })()
+  });
 }
