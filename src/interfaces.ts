@@ -1,4 +1,7 @@
-type OriginOptions = 'sponsored' | 'organic';
+export enum OriginOptions {
+    SPONSORED = 'sponsored',
+    ORGANIC = 'organic'
+}
 type TypeOptions = 'video';
 
 interface ThumbnailObject {

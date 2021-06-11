@@ -1,6 +1,7 @@
 import './main.scss';
 import {
   HttpResult,
+  OriginOptions,
   PublisherContentMetadata
 } from './interfaces';
 import {
@@ -10,6 +11,7 @@ import {
   p,
   span,
   article,
+  section,
   header,
   h2
 } from './elements/commonElements';
@@ -57,17 +59,18 @@ function generatePublisherContentItem(publisherData: PublisherContentMetadata) {
   return contentItemNodeTree;
 }
 
-function generateContentHeader() {
+function generateContentHeader(origin: OriginOptions) {
   return header({
       attributes: {
-        class: 'widget-header'
+        class: 'widget-header',
+        'data-testid': 'widget-header-container'
       }
     },
     h2({
-      text: 'woah'
+      text: origin === OriginOptions.SPONSORED ? 'Ad content' : 'More content for you'
     }),
     p({
-        text: 'by'
+        text: 'by '
       },
       span({
         text: 'Taboola'
@@ -80,17 +83,34 @@ if (app) {
     const {
       list: dataList
     } = await res;
-    
-      const contentHeader = generateContentHeader();
-      app.append(contentHeader);
 
-      const widgetContentContainer = div({attributes: {id: 'widget-content-container'}});
-      app.append(widgetContentContainer);
+    for (const data of dataList) {
+      let sectionContainer = document.querySelector(`[data-origin=${data.origin}]`);
 
-      for (const data of dataList) {
-        const publisherContentItem = generatePublisherContentItem(data);
-        widgetContentContainer.append(publisherContentItem);
+      if (!sectionContainer) {
+        sectionContainer = section({
+            attributes: {
+              class: 'widget-section-container',
+              'data-origin': data.origin,
+              'data-testid': 'widget-section'
+            }
+          }, 
+          generateContentHeader(data.origin),
+          div({
+            attributes: {
+              class: 'widget-content-container',
+              'data-testid': 'widget-content-container'
+            }
+          })
+        );
+
+        app.append(sectionContainer);
       }
 
+      const contentContainer = sectionContainer.querySelector('.widget-content-container') !;
+      const publisherContentItem = generatePublisherContentItem(data);
+
+      contentContainer.append(publisherContentItem);
+    }
   });
 }
