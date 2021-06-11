@@ -27,6 +27,13 @@ export interface HttpResult {
 }
 export interface PropOptions {
     attributes ? : Record < string, string | boolean > ;
-    styles ? : Partial < CSSStyleDeclaration > ;
-    text ? : string;
+    styles?: Partial < CSSStyleDeclaration > ;
+
+    /**
+     * @memberof PropOptions
+     * @member text - a string text to pass to a node
+     */
+    text?: string;
+
+    afterEndText?: string;
 }
