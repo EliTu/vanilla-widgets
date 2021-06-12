@@ -16,7 +16,9 @@ There are 2 ways to run the app:
 
 1. **Public URL**: Lunch the hosted app using the public URL provided above. (**NOTE**: the url should run on http protocol and not https, as running on https will cause API fetch issues).
 
-2. **Run locally**: clone the repo, open the terminal on the projects root folder and enter `npm run dev`, this will boot up the local dev server on port 3000. Open a new browser tab and enter the url localhost:3000 to access the app locally.
+2. **Run locally using the dev server**: clone the repo, open the terminal on the projects root folder and enter `npm run dev`, this will boot up the local dev server on port 3000. Open a new browser tab and enter the url localhost:3000 to access the app locally.
+
+3. **Run locally using Vite build preview**: clone the repo, cd into the project's root folder and enter `npm run serve` to lunch the app on a build preview local server on port 5000. Open a browser and lunch localhost:5000 to access the app locally.
 
 ## Tech used
 
