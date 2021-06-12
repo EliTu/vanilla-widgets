@@ -162,7 +162,6 @@ export function generateOrganicRecommendationItem({
     url,
     name,
     thumbnail,
-    branding,
     origin
 }: PublisherContentMetadata) {
     return article({
@@ -195,13 +194,6 @@ export function generateOrganicRecommendationItem({
                     },
                     text: name
                 }),
-                p({
-                    attributes: {
-                        class: `${origin}-item-branding-name`,
-                        'data-testid': 'item-branding-name'
-                    },
-                    text: `More from: ${branding}`
-                })
             )
         ))
 }

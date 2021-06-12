@@ -159,7 +159,9 @@ function runGenerateItemTests(item: HTMLElement, publisherData: PublisherContent
 
     const textContainer = item.querySelector(textContentContainerTestid) !;
     expect(textContainer).toBeDefined();
-    expect(textContainer.children).toHaveLength(2);
+    
+    const expectedChildrenByOrigin = isOrganic ? 1 : 2;
+    expect(textContainer.children).toHaveLength(expectedChildrenByOrigin);
 
     const itemText = textContainer.querySelector(itemTextTestid) !;
     expect(itemText).toBeDefined();
@@ -168,6 +170,7 @@ function runGenerateItemTests(item: HTMLElement, publisherData: PublisherContent
     const itemBrandingName = textContainer.querySelector(itemBrandingTestId) !;
     expect(itemBrandingName).toBeDefined();
 
-    const itemBrandingNameByOrigin = isOrganic ? 'More from:' : 'by';
-    expect(itemBrandingName.textContent).toEqual(`${itemBrandingNameByOrigin} ${publisherData.branding}`);
+    if (!isOrganic) {
+        expect(itemBrandingName.textContent).toEqual(`by ${publisherData.branding}`);
+    }
 }
