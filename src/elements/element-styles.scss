@@ -1,3 +1,5 @@
+@import '../variables';
+
 .item-container {
     width: 100%;
 
@@ -51,10 +53,10 @@
             left: 0;
             width: 100%;
             padding: 1rem;
-            color: rgb(255, 255, 255);
-            text-shadow: 0 0 3px 3px white;
+            color: $main-white;
+            text-shadow: 0 0 3px 3px $main-white;
             font-weight: bolder;
-            background-color: rgba(53, 52, 52, 0.288);
+            background-color: $background-grey;
         }
     }
 }
@@ -62,7 +64,7 @@
 .organic-item-container {
     background-repeat: no-repeat;
     background-size: cover;
-    border: 2px solid white;
+    border: 2px solid $main-white;
     height: 200px;
 }
 
