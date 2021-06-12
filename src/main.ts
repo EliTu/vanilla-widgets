@@ -6,7 +6,7 @@ import {
 } from './interfaces';
 import buildUrl from './utils/buildUrl';
 import {
-  generatePublisherContentItemByOrigin,
+  generateRecommendationItemByOrigin,
   generateWidgetSectionByOrigin
 } from './elements/widgetContentElements';
 
@@ -43,10 +43,9 @@ if (app) {
         const contentContainer = widgetOriginSection.querySelector < HTMLElement > ('.widget-content-container') !;
 
         // generate the content item node with the publisher's data and append it to the content container
-        const publisherContentItem = generatePublisherContentItemByOrigin(data);
-        console.log(contentContainer);
+        const publisherContentItem = generateRecommendationItemByOrigin(data);
         
-        contentContainer.append(publisherContentItem);
+        if(publisherContentItem) contentContainer.append(publisherContentItem);
       }
     } catch (error) {
       console.error(error);

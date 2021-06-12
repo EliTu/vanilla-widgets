@@ -51,7 +51,7 @@ export function generateWidgetHeaderByOrigin(origin: OriginOptions) {
             }
         },
         h2({
-            text: isSponsored ? 'Ad content' : 'More content for you'
+            text: isSponsored ? 'Ad content for you' : 'More content on this site'
         }),
         p({
                 text: isSponsored ? 'by ' : ''
@@ -62,20 +62,46 @@ export function generateWidgetHeaderByOrigin(origin: OriginOptions) {
 }
 
 /**
- * Generates an interactive widget item with the relevant publisher data as the content.
+ * Generates an interactive widget item with the relevant publisher data as the content by the origin type.
  * @param param The publisher data object. @see PublisherContentMetadata
  * @returns HTMLElement.
  */
-export function generatePublisherContentItemByOrigin({
+export function generateRecommendationItemByOrigin(publisherData: PublisherContentMetadata) {
+    const { origin } = publisherData;
+    
+    switch (origin) {
+        case OriginOptions.SPONSORED: {
+            return generateSponsoredRecommendationItem(publisherData);
+        }
+        
+        case OriginOptions.ORGANIC: {
+            return generateOrganicRecommendationItem(publisherData);
+        }
+
+        default: {
+            console.warn(`Trying to generate an unknown origin type: ${origin}`);
+        }
+            
+    }
+}
+
+/**
+ * Generate the element tree for an SPONSORED recommendation item.
+ * @param param0 @see PublisherContentMetadata
+ * @returns HTMLElement
+ */
+export function generateSponsoredRecommendationItem({
     url,
     name,
     thumbnail,
-    branding
+    branding,
+    origin
 }: PublisherContentMetadata) {
     return article({
             attributes: {
                 class: 'item-container',
-                'data-testid': 'item-article'
+                'data-testid': 'item-article',
+                'data-recommendation-type': `${origin}`
             },
         },
         a({
@@ -103,6 +129,53 @@ export function generatePublisherContentItemByOrigin({
             p({
                 text: `by ${branding}`
             })
+        )
+    )
+}
+
+/**
+ * Generate the element tree for an ORGANIC recommendation item.
+ * @param param0 @see PublisherContentMetadata
+ * @returns HTMLElement
+ */
+export function generateOrganicRecommendationItem({
+    url,
+    name,
+    thumbnail,
+    branding,
+    origin
+}: PublisherContentMetadata) {
+    return article({
+            attributes: {
+                class: 'item-container',
+                'data-testid': 'item-article',
+                'data-recommendation-type': `${origin}`
+            },
+        },
+        a({
+            attributes: {
+                href: url,
+                target: '_blank',
+                rel: 'noopener noreferrer',
+                class: 'image-link-container'
+            },
+            styles: {
+                backgroundImage: `url(${thumbnail[0].url})`
+            }
+        }, // TODO: CREATE THE CORRECT ITEM ELEMENT STRUCTURE
+        // img({
+        //     attributes: {
+        //         class: 'item-thumbnail-image',
+        //         src: thumbnail[0].url,
+        //         alt: name
+        //     }
+        // })
+        ),
+        div({
+                attributes: {
+                    class: 'text-content-container'
+                }
+            },
         )
     )
 }
