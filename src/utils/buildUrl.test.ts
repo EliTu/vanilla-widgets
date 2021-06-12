@@ -8,10 +8,25 @@ describe('Testing buildURL function', () => {
             publisherId: 'qwerty',
             sourceId: '123456'
         };
-        const buildUrlResult = buildUrl(urlParams);
+        const buildUrlResult1 = buildUrl(urlParams);
 
         const expected = `http://api.taboola.com/1.0/json/${urlParams.publisherId}/recommendations.get?app.type=${urlParams.appType}&app.apikey=${urlParams.apiKey}&count=4&source.type=video&source.id=${urlParams.sourceId}&source.url=http://www.site.com/videos/214321562187.html`;
 
-        expect(buildUrlResult).toEqual(expected);
+        expect(buildUrlResult1).toEqual(expected);
+    });
+
+    it('Should generate the URL with empty params as well', () => {
+        const urlParams: UrlParams = {
+            apiKey: '',
+            appType: '',
+            publisherId: '',
+            sourceId: ''
+        };
+
+        const buildUrlResult2 = buildUrl(urlParams);
+
+        const expected = `http://api.taboola.com/1.0/json//recommendations.get?app.type=&app.apikey=&count=4&source.type=video&source.id=&source.url=http://www.site.com/videos/214321562187.html`;
+
+         expect(buildUrlResult2).toEqual(expected);
     });
 });
