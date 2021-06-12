@@ -24,11 +24,12 @@ export function setElementProps(element: HTMLElement, {
  * @param attributes an object containing key-value pairs of HTML tag attributes.
  */
 export function setAttributes(element: HTMLElement, attributes: PropOptions['attributes']) {
-    if (!attributes) return;
+    if (!attributes || !Object.keys(attributes).length) return;
 
     const attributeKeyValueArray = Object.entries(attributes);
     for (const [attributeNameKey, value] of attributeKeyValueArray) {
-        if (typeof value === 'boolean') element.setAttribute(attributeNameKey, ''); // for example <button disabled>
+        /// set true boolean values without value, for example <button disabled>
+        if (typeof value === 'boolean' && value) element.setAttribute(attributeNameKey, ''); 
         else element.setAttribute(attributeNameKey, (value as string));
     }
 }
@@ -39,7 +40,7 @@ export function setAttributes(element: HTMLElement, attributes: PropOptions['att
  * @param styles an object containing key-value pairs of valid CSS rules.
  */
 export function setStyles(element: HTMLElement, styles: PropOptions['styles']) {
-    if (!styles) {
+    if (!styles || !Object.keys(styles).length) {
         element.removeAttribute(`style`);
         return;
     }

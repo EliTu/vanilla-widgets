@@ -3,6 +3,6 @@
  * @param type a string type that suppose to represent a valid HTML tag name.
  * @returns boolean.
  */
-export default function isValidHTMLType< Type extends keyof HTMLElementTagNameMap >(type: Type) {
+export default function isValidHTMLType < Type extends keyof HTMLElementTagNameMap > (type: Type) {
     return document.createElement(type.toUpperCase()).toString() !== "[object HTMLUnknownElement]";
 }

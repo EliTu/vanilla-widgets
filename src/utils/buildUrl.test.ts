@@ -1,5 +1,7 @@
-import { UrlParams } from '../interfaces';
-import buildUrl from './buildUrl'
+import {
+    UrlParams
+} from '../interfaces';
+import buildUrl from './buildUrl';
 describe('Testing buildURL function', () => {
     it('should build the correct URL given the URL params', () => {
         const urlParams: UrlParams = {
@@ -27,6 +29,6 @@ describe('Testing buildURL function', () => {
 
         const expected = `http://api.taboola.com/1.0/json//recommendations.get?app.type=&app.apikey=&count=4&source.type=video&source.id=&source.url=http://www.site.com/videos/214321562187.html`;
 
-         expect(buildUrlResult2).toEqual(expected);
+        expect(buildUrlResult2).toEqual(expected);
     });
 });
