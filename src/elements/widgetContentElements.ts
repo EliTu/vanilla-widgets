@@ -47,6 +47,7 @@ export function generateWidgetHeaderByOrigin(origin: OriginOptions) {
     return header({
             attributes: {
                 class: 'widget-header',
+                'data-origin': origin,
                 'data-testid': 'widget-header-container'
             }
         },
