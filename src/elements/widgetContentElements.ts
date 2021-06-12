@@ -12,7 +12,7 @@ import {
     header,
     h2,
     section
-} from '../elements/elements';
+} from './elements';
 
 /**
  * Generates a section node that contains the widget's header and the content container.
@@ -66,7 +66,7 @@ export function generateWidgetHeaderByOrigin(origin: OriginOptions) {
  * @param param The publisher data object. @see PublisherContentMetadata
  * @returns HTMLElement.
  */
-export function generatePublisherContentItem({
+export function generatePublisherContentItemByOrigin({
     url,
     name,
     thumbnail,

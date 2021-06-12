@@ -6,9 +6,9 @@ import {
 } from './interfaces';
 import buildUrl from './utils/buildUrl';
 import {
-  generatePublisherContentItem,
+  generatePublisherContentItemByOrigin,
   generateWidgetSectionByOrigin
-} from './utils/widgetContentUtils';
+} from './elements/widgetContentElements';
 
 const app = document.querySelector < HTMLDivElement > ('#app');
 const urlParams: UrlParams = {
@@ -43,7 +43,9 @@ if (app) {
         const contentContainer = widgetOriginSection.querySelector < HTMLElement > ('.widget-content-container') !;
 
         // generate the content item node with the publisher's data and append it to the content container
-        const publisherContentItem = generatePublisherContentItem(data);
+        const publisherContentItem = generatePublisherContentItemByOrigin(data);
+        console.log(contentContainer);
+        
         contentContainer.append(publisherContentItem);
       }
     } catch (error) {

@@ -2,8 +2,8 @@ import { ChildrenType, PropOptions } from "../interfaces";
 import {
     setElementChildren,
     setElementProps,
-} from "./generateElementHelpers";
-import isValidHTMLType from "./isValidHTMLType";
+} from "../utils/generateElementUtils";
+import isValidHTMLType from "../utils/isValidHTMLType";
 
 /**
  * a lightweight, flexible function that generates an HTML element node with the provided attributes, styles and 
