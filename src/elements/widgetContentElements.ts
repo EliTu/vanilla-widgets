@@ -112,30 +112,32 @@ export function generateSponsoredRecommendationItem({
                 href: url,
                 target: '_blank',
                 rel: 'noopener noreferrer',
-                class: 'image-link-container',
+                class: `${origin}-image-link-container`,
                 'data-testid': 'image-link-container'
             }
         }, img({
             attributes: {
-                class: 'item-thumbnail-image',
+                class: `${origin}-item-thumbnail-image`,
                 src: thumbnail[0].url,
                 alt: name
             }
         })),
         div({
                 attributes: {
-                    class: 'text-content-container',
+                    class: `${origin}-text-content-container`,
                     'data-testid': 'text-content-container'
                 }
             },
             p({
                 attributes: {
+                    class: 'item-text-content',
                     'data-testid': 'item-text-content'
                 },
                 text: name
             }),
             p({
                 attributes: {
+                    class: `${origin}-item-branding-name`,
                     'data-testid': 'item-branding-name'
                 },
                 text: `by ${branding}`
@@ -168,24 +170,39 @@ export function generateOrganicRecommendationItem({
                     href: url,
                     target: '_blank',
                     rel: 'noopener noreferrer',
-                    class: 'image-link-container'
+                    class: `${origin}-image-link-container`
                 },
                 styles: {
-                    backgroundImage: `url(${thumbnail[0].url})`
+                    backgroundImage: `url(${thumbnail[0].url})`,
+                    backgroundSize: 'auto',
+                    backgroundRepeat: 'no-repeat'
                 }
-            }, // TODO: CREATE THE CORRECT ITEM ELEMENT STRUCTURE
+            },
             // img({
             //     attributes: {
-            //         class: 'item-thumbnail-image',
+            //         class: `${origin}-item-thumbnail-image`,
             //         src: thumbnail[0].url,
             //         alt: name
             //     }
-            // })
+            // }),
+            span({
+                attributes: {
+                    class: `${origin}-item-title`,
+                    'data-testid': 'organic-item-title'
+                },
+                text: name
+            })
         ),
         div({
             attributes: {
-                class: 'text-content-container'
+                class: `${origin}-text-content-container`
             }
-        }, )
+        }, p({
+            attributes: {
+                class: `${origin}-item-branding-name`,
+                'data-testid': 'organic-item-branding-name'
+            },
+            text: `by ${branding}`
+        }))
     )
 }

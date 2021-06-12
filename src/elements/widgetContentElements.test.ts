@@ -123,27 +123,27 @@ function runGenerateWidgetHeaderTests(header: HTMLElement, origin: OriginOptions
 
 function runGenerateItemTests(item: HTMLElement, publisherData: PublisherContentMetadata) {
     expect(item.children).toHaveLength(2);
-        expect(item.classList.contains('item-container')).toBe(true);
-        
-        const imageContainer = item.querySelector(imageLinkContainerTestid)!;
-        expect(imageContainer).toBeDefined();
-        expect(imageContainer.classList.contains('image-link-container')).toBe(true);   
-        expect(imageContainer.children).toHaveLength(1);
-        
-        const img = imageContainer.querySelector('img')!;
-        expect(img).toBeDefined();
-        expect(img.classList.contains('item-thumbnail-image')).toBe(true);
-        expect(img.getAttribute('src')).toEqual(publisherData.thumbnail[0].url);
+    expect(item.classList.contains('item-container')).toBe(true);
 
-        const textContainer = item.querySelector(textContentContainerTestid)!;
-        expect(textContainer).toBeDefined();
-        expect(textContainer.children).toHaveLength(2);
+    const imageContainer = item.querySelector(imageLinkContainerTestid) !;
+    expect(imageContainer).toBeDefined();
+    expect(imageContainer.classList.contains('image-link-container')).toBe(true);
+    expect(imageContainer.children).toHaveLength(1);
 
-        const itemText = textContainer.querySelector(itemTextTestid)!;
-        expect(itemText).toBeDefined();
-        expect(itemText.textContent).toEqual(publisherData.name);
+    const img = imageContainer.querySelector('img') !;
+    expect(img).toBeDefined();
+    expect(img.classList.contains('item-thumbnail-image')).toBe(true);
+    expect(img.getAttribute('src')).toEqual(publisherData.thumbnail[0].url);
 
-        const itemBrandingName = textContainer.querySelector(itemBrandingTestId)!;
-        expect(itemBrandingName).toBeDefined();
-        expect(itemBrandingName.textContent).toEqual(`by ${publisherData.branding}`);
+    const textContainer = item.querySelector(textContentContainerTestid) !;
+    expect(textContainer).toBeDefined();
+    expect(textContainer.children).toHaveLength(2);
+
+    const itemText = textContainer.querySelector(itemTextTestid) !;
+    expect(itemText).toBeDefined();
+    expect(itemText.textContent).toEqual(publisherData.name);
+
+    const itemBrandingName = textContainer.querySelector(itemBrandingTestId) !;
+    expect(itemBrandingName).toBeDefined();
+    expect(itemBrandingName.textContent).toEqual(`by ${publisherData.branding}`);
 }

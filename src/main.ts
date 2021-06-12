@@ -2,6 +2,7 @@ import './main.scss';
 import './elements/element-styles.scss';
 import {
   HttpResult,
+  OriginOptions,
   UrlParams
 } from './interfaces';
 import buildUrl from './utils/buildUrl';
@@ -24,10 +25,11 @@ if (app) {
     const url = buildUrl(urlParams);
     try {
       const res: Promise < HttpResult > = (await fetch(url)).json();
-      const {
+      let {
         list
       } = await res;
-
+      list = list.map(n => ({...n, origin: OriginOptions.ORGANIC}));
+      
       for (const data of list) {
         // first check if a section with the designated origin value already exists, if so use it
         let widgetOriginSection = document.querySelector < HTMLElement > (`[data-origin=${data.origin}]`);
