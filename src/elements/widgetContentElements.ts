@@ -113,12 +113,12 @@ export function generateSponsoredRecommendationItem({
                     target: '_blank',
                     rel: 'noopener noreferrer',
                     class: `link-container`,
-                    'data-testid': 'image-link-container'
                 }
             },
             div({
                     attributes: {
-                        class: `image-link-container`
+                        'data-testid': 'image-container',
+                        class: `image-container`
                     }
                 },
                 img({
@@ -167,23 +167,19 @@ export function generateOrganicRecommendationItem({
 }: PublisherContentMetadata) {
     return article({
             attributes: {
-                class: 'item-container',
+                class: 'item-container organic-item-container',
                 'data-testid': 'item-article',
                 'data-recommendation-type': `${origin}`
             },
             styles: {
                 backgroundImage: `url(${thumbnail[0].url})`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-                border: '2px solid white',
-                height: '200px'
             }
         },
         a({
                 attributes: {
                     href: url,
                     class: `link-container`,
-                    'data-testid': 'image-link-container'
+                    'data-testid': 'link-container'
                 }
             },
             div({

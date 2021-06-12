@@ -34,7 +34,7 @@ const mockPublisherData: PublisherContentMetadata = {
 const testid = 'data-testid'
 const headerTestid = `[${testid}="widget-header-container"]`;
 const widgetContentContainerTestid = `[${testid}="widget-content-container"]`;
-const imageLinkContainerTestid = `[${testid}="image-link-container"]`;
+const imageContainerTestid = `[${testid}="image-container"]`;
 const textContentContainerTestid = `[${testid}="text-content-container"]`;
 const itemTextTestid = `[${testid}="item-text-content"]`;
 const itemBrandingTestId = `[${testid}="item-branding-name"]`;
@@ -70,10 +70,21 @@ describe('Testing generateSponsoredRecommendationItem function', () => {
     it('Should a correct sponsored recommendation item given correct publisher data', () => {
         const publisherDataWithSponsoredOrigin: PublisherContentMetadata = {
             ...mockPublisherData,
-            origin: OriginOptions.ORGANIC
+            origin: OriginOptions.SPONSORED
         };
         const sponsoredItem = generateSponsoredRecommendationItem(publisherDataWithSponsoredOrigin);
         runGenerateItemTests(sponsoredItem, publisherDataWithSponsoredOrigin);
+    });
+});
+
+describe('Testing generateOrganicRecommendationItem function', () => {
+    it('Should a correct organic recommendation item given correct publisher data', () => {
+        const publisherDataWithOrganicOrigin: PublisherContentMetadata = {
+            ...mockPublisherData,
+            origin: OriginOptions.ORGANIC
+        };
+        const organicItem = generateOrganicRecommendationItem(publisherDataWithOrganicOrigin);
+        runGenerateItemTests(organicItem, publisherDataWithOrganicOrigin);
     });
 });
 
@@ -122,18 +133,27 @@ function runGenerateWidgetHeaderTests(header: HTMLElement, origin: OriginOptions
 }
 
 function runGenerateItemTests(item: HTMLElement, publisherData: PublisherContentMetadata) {
-    expect(item.children).toHaveLength(2);
+    const { origin } = publisherData;
+    const isOrganic = origin === OriginOptions.ORGANIC;
+
+    expect(item.children).toHaveLength(1);
     expect(item.classList.contains('item-container')).toBe(true);
 
-    const imageContainer = item.querySelector(imageLinkContainerTestid) !;
-    expect(imageContainer).toBeDefined();
-    expect(imageContainer.classList.contains('image-link-container')).toBe(true);
-    expect(imageContainer.children).toHaveLength(1);
+    if(isOrganic) {        
+       expect(item.classList.contains('organic-item-container')).toBe(true);
+    }
 
-    const img = imageContainer.querySelector('img') !;
-    expect(img).toBeDefined();
-    expect(img.classList.contains('item-thumbnail-image')).toBe(true);
-    expect(img.getAttribute('src')).toEqual(publisherData.thumbnail[0].url);
+    if(!isOrganic) {
+        const imageContainer = item.querySelector(imageContainerTestid)!;
+        expect(imageContainer).toBeDefined();
+        expect(imageContainer.classList.contains('image-container')).toBe(true);
+        expect(imageContainer.children).toHaveLength(1);
+        
+        const img = imageContainer.querySelector('img') !;
+        expect(img).toBeDefined();
+        expect(img.classList.contains('item-thumbnail-image')).toBe(true);
+        expect(img.getAttribute('src')).toEqual(publisherData.thumbnail[0].url);
+    } 
 
     const textContainer = item.querySelector(textContentContainerTestid) !;
     expect(textContainer).toBeDefined();
@@ -145,5 +165,7 @@ function runGenerateItemTests(item: HTMLElement, publisherData: PublisherContent
 
     const itemBrandingName = textContainer.querySelector(itemBrandingTestId) !;
     expect(itemBrandingName).toBeDefined();
-    expect(itemBrandingName.textContent).toEqual(`by ${publisherData.branding}`);
+    
+    const itemBrandingNameByOrigin = isOrganic ? 'More from:' : 'by';  
+    expect(itemBrandingName.textContent).toEqual(`${itemBrandingNameByOrigin} ${publisherData.branding}`);
 }

@@ -28,7 +28,7 @@ if (app) {
         let {
         list
       } = await res;
-      // list = list.map(n => ({...n, origin: OriginOptions.ORGANIC}));
+      list = list.map(n => ({...n, origin: OriginOptions.ORGANIC}));
       
       for (const data of list) {
         // first check if a section with the designated origin value already exists, if so use it

@@ -16,7 +16,7 @@
             background-color: rgba(180, 180, 180, 0.322);
         }
 
-        .image-link-container {
+        .image-container {
             width: 90%;
             height: 200px;
             display: flex;
@@ -85,6 +85,13 @@
             }
         }
     }
+}
+
+.organic-item-container {
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 2px solid white;
+    height: 200px;
 }
 
 // extra-small screen siz
