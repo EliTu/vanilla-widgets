@@ -59,6 +59,13 @@
     }
 }
 
+.organic-item-container {
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 2px solid white;
+    height: 200px;
+}
+
 // medium-large screens size
 @media only screen and (max-width: 920px) {
     .item-container {
@@ -75,6 +82,8 @@
     .item-container {
         .link-container {
             .sponsored-text-content-container {
+                width: 50%;
+
                 .item-text-content {
                     font-size: 14px;
                 }
@@ -87,17 +96,15 @@
     }
 }
 
-.organic-item-container {
-    background-repeat: no-repeat;
-    background-size: cover;
-    border: 2px solid white;
-    height: 200px;
-}
 
 // extra-small screen siz
 @media only screen and (max-width: 400px) {
     .item-container {
         .link-container {
+            .image-container {
+                height: 150px;
+            }
+
             .sponsored-text-content-container {
                 .item-text-content {
                     font-size: 12px;
@@ -108,6 +115,5 @@
                 }
             }
         }
-
     }
 }
