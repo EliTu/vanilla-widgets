@@ -4,7 +4,8 @@
     "dev": "vite",
     "test": "jest",
     "build": "tsc && vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",
@@ -12,6 +13,7 @@
     "@babel/preset-typescript": "^7.14.5",
     "@types/jest": "^26.0.23",
     "babel-jest": "^27.0.2",
+    "husky": "^6.0.0",
     "jest": "^27.0.4",
     "jsdom": "^16.6.0",
     "sass": "^1.34.1",
