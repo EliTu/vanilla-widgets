@@ -1,8 +1,5 @@
-import './main.scss';
-import './elements/element-styles.scss';
 import {
   HttpResult,
-  OriginOptions,
   UrlParams
 } from './interfaces';
 import buildUrl from './utils/buildUrl';
@@ -10,6 +7,8 @@ import {
   generateRecommendationItemByOrigin,
   generateWidgetSectionByOrigin
 } from './elements/widgetContentElements';
+import './elements/element-styles.scss';
+import './main.scss';
 
 const app = document.querySelector < HTMLDivElement > ('#app');
 const urlParams: UrlParams = {
@@ -24,14 +23,14 @@ if (app) {
   document.addEventListener('DOMContentLoaded', async () => {
     const url = buildUrl(urlParams);
     try {
-      const res: Promise < HttpResult > = (await fetch(url)).json();
-        const {
+      const res: Promise<HttpResult> = (await fetch(url)).json();
+      const {
         list
       } = await res;
-      
+
       for (const data of list) {
         // first check if a section with the designated origin value already exists, if so use it
-        let widgetOriginSection = document.querySelector < HTMLElement > (`[data-origin=${data.origin}]`);
+        let widgetOriginSection = document.querySelector <HTMLElement>(`[data-origin=${data.origin}]`);
 
         // if not, create a new section element for the new origin and use it
         if (!widgetOriginSection) {
@@ -41,12 +40,12 @@ if (app) {
         }
 
         // get the widget content container of the widget's section element
-        const contentContainer = widgetOriginSection.querySelector < HTMLElement > ('.widget-content-container') !;
+        const contentContainer = widgetOriginSection.querySelector <HTMLElement>('.widget-content-container')!;
 
         // generate the content item node with the publisher's data and append it to the content container
         const publisherContentItem = generateRecommendationItemByOrigin(data);
-        
-        if(publisherContentItem) contentContainer.append(publisherContentItem);
+
+        if (publisherContentItem) contentContainer.append(publisherContentItem);
       }
     } catch (error) {
       console.error(error);

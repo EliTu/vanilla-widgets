@@ -1,4 +1,7 @@
-import { ChildrenType, PropOptions } from "../interfaces";
+import {
+    ChildrenType,
+    PropOptions
+} from "../interfaces";
 import {
     setElementChildren,
     setElementProps,
@@ -13,13 +16,13 @@ import isValidHTMLType from "../utils/isValidHTMLType";
  * @param childElements a list of HTML elements to nest inside the element.
  * @returns HTMLElement;
  */
-export default function generateElement < Type extends keyof HTMLElementTagNameMap > (type: Type, propOptions: PropOptions, ...childElements: ChildrenType): HTMLElementTagNameMap[Type] {
-    if(!isValidHTMLType(type)) {
+export default function generateElement <Type extends keyof HTMLElementTagNameMap>(type: Type, propOptions: PropOptions, ...childElements: ChildrenType): HTMLElementTagNameMap[Type] {
+    if (!isValidHTMLType(type)) {
         throw new Error(`Attempting to assign an invalid HTML element type: ${type}.`);
     }
-    const element = document.createElement<Type>(type);
+    const element = document.createElement <Type> (type);
 
-    if(Object.keys(propOptions).length) setElementProps(element, propOptions);
+    if (Object.keys(propOptions).length) setElementProps(element, propOptions);
 
     // check the otherChildren param to handle nested elements and afterEnd strings
     if (Array.isArray(childElements)) {

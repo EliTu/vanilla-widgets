@@ -29,7 +29,7 @@ export function setAttributes(element: HTMLElement, attributes: PropOptions['att
     const attributeKeyValueArray = Object.entries(attributes);
     for (const [attributeNameKey, value] of attributeKeyValueArray) {
         /// set true boolean values without value, for example <button disabled>
-        if (typeof value === 'boolean' && value) element.setAttribute(attributeNameKey, ''); 
+        if (typeof value === 'boolean' && value) element.setAttribute(attributeNameKey, '');
         else element.setAttribute(attributeNameKey, (value as string));
     }
 }
@@ -73,12 +73,12 @@ export function appendText(element: HTMLElement, text: string) {
  * @param afterEndText a string to be appended after the child.
  */
 export function setElementChildren(element: HTMLElement, childElements: ChildrenType, afterEndText ? : string) {
-    for(let i = 0; i < childElements.length; i++) {
+    for (let i = 0; i < childElements.length; i++) {
         const child = childElements[i];
 
         // first append the child to the parent
         element.append(child);
-        
+
         // insert any afterEnd strings right after the last child is appended to a parent
         if (afterEndText && i === childElements.length - 1) child.insertAdjacentText('afterend', afterEndText);
     }
