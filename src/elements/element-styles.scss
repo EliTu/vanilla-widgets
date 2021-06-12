@@ -15,7 +15,7 @@
         &:hover {
             background-color: rgba(180, 180, 180, 0.322);
         }
-        
+
         // SPONSORED WIDGET STYLES
         .sponsored-image-link-container {
             width: 90%;
@@ -28,24 +28,24 @@
                 height: auto;
             }
         }
-    
+
         .sponsored-text-content-container {
             display: flex;
             width: 90%;
             flex-direction: column;
             margin: 0 0.8rem 0.5rem 0.8rem;
-    
+
             .item-text-content {
                 font-size: 18px;
                 margin-bottom: 0.5rem;
             }
-    
+
             .sponsored-item-branding-name {
                 font-size: 13px;
                 font-weight: bold;
             }
         }
-    
+
         // ORGANIC WIDGET STYLES
         .organic-image-link-container {
             width: auto;
@@ -53,12 +53,12 @@
             display: flex;
             justify-content: center;
             position: relative;
-    
+
             .organic-item-thumbnail-image {
                 width: auto;
                 height: auto;
                 position: absolute;
-    
+
                 .organic-item-title {
                     z-index: 100;
                     text-decoration: none;
@@ -70,5 +70,53 @@
                 }
             }
         }
+    }
+}
+
+// medium-large screens size
+@media only screen and (max-width: 920px) {
+    .item-container {
+        .link-container {
+            .sponsored-image-link-container {
+                height: auto;
+            }
+        }
+
+    }
+}
+
+// small screen size
+@media only screen and (max-width: 580px) {
+    .item-container {
+        .link-container {
+            .sponsored-text-content-container {
+                .item-text-content {
+                    font-size: 14px;
+                }
+            
+                .sponsored-item-branding-name {
+                    font-size: 10px;
+                }
+            }
+        }
+
+    }
+}
+
+// extra-small screen siz
+@media only screen and (max-width: 400px) {
+    .item-container {
+        .link-container {
+            .sponsored-text-content-container {
+                .item-text-content {
+                    font-size: 12px;
+                }
+
+                .sponsored-item-branding-name {
+                    font-size: 8px;
+                }
+            }
+        }
+
     }
 }
