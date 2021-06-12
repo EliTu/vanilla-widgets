@@ -80,6 +80,7 @@ export function generateRecommendationItemByOrigin(publisherData: PublisherConte
 
         default: {
             console.warn(`Trying to generate an unknown origin type: ${origin}`);
+            return;
         }
             
     }
