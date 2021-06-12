@@ -10,7 +10,7 @@ export enum OriginOptions {
 /**
  * an enum that contain all the possible publisher content types.
  */
-enum TypeOptions {
+export enum TypeOptions {
     VIDEO = 'video'
 }
 

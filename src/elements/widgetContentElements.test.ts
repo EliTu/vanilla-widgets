@@ -1,5 +1,7 @@
 import {
-    OriginOptions
+    OriginOptions,
+    PublisherContentMetadata,
+    TypeOptions
 } from '../interfaces';
 import {
     generateOrganicRecommendationItem,
@@ -9,11 +11,34 @@ import {
     generateWidgetSectionByOrigin
 } from './widgetContentElements';
 
+let origin = OriginOptions.ORGANIC;
+
+const mockPublisherData: PublisherContentMetadata = {
+    branding: 'test_branding',
+    categories: ['test_categories'],
+    created: new Date(),
+    description: 'test_description',
+    duration: '0',
+    id: '123',
+    name: 'test_name',
+    rating: '0',
+    thumbnail: [{
+        url: 'url_test'
+    }],
+    type: TypeOptions.VIDEO,
+    url: 'http://www.test.com',
+    views: '0',
+    origin,
+}
+
 const testid = 'data-testid'
 const headerTestid = `[${testid}="widget-header-container"]`;
 const widgetContentContainerTestid = `[${testid}="widget-content-container"]`;
+const imageLinkContainerTestid = `[${testid}="image-link-container"]`;
+const textContentContainerTestid = `[${testid}="text-content-container"]`;
+const itemTextTestid = `[${testid}="item-text-content"]`;
+const itemBrandingTestId = `[${testid}="item-branding-name"]`;
 
-let origin = OriginOptions.ORGANIC;
 describe('Testing generateWidgetSectionByOrigin function', () => {
     it('Should generate a section element with children nodes for the ORGANIC recommendation widget', () => {
         const organicWidgetSection = generateWidgetSectionByOrigin(origin);
@@ -41,6 +66,28 @@ describe('Testing generateWidgetHeaderByOrigin function', () => {
     });
 });
 
+describe('Testing generateSponsoredRecommendationItem function', () => {
+    it('Should a correct sponsored recommendation item given correct publisher data', () => {
+        const publisherDataWithSponsoredOrigin: PublisherContentMetadata = {
+            ...mockPublisherData,
+            origin: OriginOptions.ORGANIC
+        };
+        const sponsoredItem = generateSponsoredRecommendationItem(publisherDataWithSponsoredOrigin);
+        runGenerateItemTests(sponsoredItem, publisherDataWithSponsoredOrigin);
+    });
+});
+
+describe('Testing generateRecommendationItemByOrigin function', () => {
+    it('Should throw an error if origin type is unsupported', () => {
+        const updatedPublisherData = {
+            ...mockPublisherData,
+            origin: 'foo'
+        };
+        //@ts-ignore 
+        expect(() => generateRecommendationItemByOrigin(updatedPublisherData)).toThrowError('Trying to generate an unknown origin type: foo');
+    });
+});
+
 function runGenerateWidgetSectionTests(section: HTMLElement, origin: OriginOptions) {
     expect(section.children).toHaveLength(2);
     expect(section.dataset.origin).toBe(origin);
@@ -60,16 +107,43 @@ function runGenerateWidgetHeaderTests(header: HTMLElement, origin: OriginOptions
     expect(header.dataset.origin).toBe(origin);
     expect(header.classList.contains('widget-header')).toBe(true);
 
-    const h2 = header.querySelector('h2')!;
+    const h2 = header.querySelector('h2') !;
     expect(h2).toBeDefined();
     expect(h2.textContent).toEqual(origin === OriginOptions.ORGANIC ? 'More content on this site' : 'Ad content for you');
 
-    const p = header.querySelector('p')!;
+    const p = header.querySelector('p') !;
     expect(p).toBeDefined();
     expect(p.children).toHaveLength(1);
     expect(p.textContent).toEqual(origin === OriginOptions.ORGANIC ? '' : 'by Taboola');
 
-    const span = p.querySelector('span');
+    const span = p.querySelector('span') !;
     expect(span).toBeDefined();
-    expect(span?.textContent).toEqual(origin === OriginOptions.ORGANIC ? '' : 'Taboola')
+    expect(span.textContent).toEqual(origin === OriginOptions.ORGANIC ? '' : 'Taboola')
+}
+
+function runGenerateItemTests(item: HTMLElement, publisherData: PublisherContentMetadata) {
+    expect(item.children).toHaveLength(2);
+        expect(item.classList.contains('item-container')).toBe(true);
+        
+        const imageContainer = item.querySelector(imageLinkContainerTestid)!;
+        expect(imageContainer).toBeDefined();
+        expect(imageContainer.classList.contains('image-link-container')).toBe(true);   
+        expect(imageContainer.children).toHaveLength(1);
+        
+        const img = imageContainer.querySelector('img')!;
+        expect(img).toBeDefined();
+        expect(img.classList.contains('item-thumbnail-image')).toBe(true);
+        expect(img.getAttribute('src')).toEqual(publisherData.thumbnail[0].url);
+
+        const textContainer = item.querySelector(textContentContainerTestid)!;
+        expect(textContainer).toBeDefined();
+        expect(textContainer.children).toHaveLength(2);
+
+        const itemText = textContainer.querySelector(itemTextTestid)!;
+        expect(itemText).toBeDefined();
+        expect(itemText.textContent).toEqual(publisherData.name);
+
+        const itemBrandingName = textContainer.querySelector(itemBrandingTestId)!;
+        expect(itemBrandingName).toBeDefined();
+        expect(itemBrandingName.textContent).toEqual(`by ${publisherData.branding}`);
 }

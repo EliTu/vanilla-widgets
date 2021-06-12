@@ -112,7 +112,8 @@ export function generateSponsoredRecommendationItem({
                 href: url,
                 target: '_blank',
                 rel: 'noopener noreferrer',
-                class: 'image-link-container'
+                class: 'image-link-container',
+                'data-testid': 'image-link-container'
             }
         }, img({
             attributes: {
@@ -123,13 +124,20 @@ export function generateSponsoredRecommendationItem({
         })),
         div({
                 attributes: {
-                    class: 'text-content-container'
+                    class: 'text-content-container',
+                    'data-testid': 'text-content-container'
                 }
             },
             p({
+                attributes: {
+                    'data-testid': 'item-text-content'
+                },
                 text: name
             }),
             p({
+                attributes: {
+                    'data-testid': 'item-branding-name'
+                },
                 text: `by ${branding}`
             })
         )
