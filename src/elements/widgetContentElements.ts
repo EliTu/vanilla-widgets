@@ -116,14 +116,18 @@ export function generateSponsoredRecommendationItem({
                     'data-testid': 'image-link-container'
                 }
             },
-            div({attributes: {class: `${origin}-image-link-container`}},
-            img({
-                attributes: {
-                    class: `${origin}-item-thumbnail-image`,
-                    src: thumbnail[0].url,
-                    alt: name
-                }
-            })
+            div({
+                    attributes: {
+                        class: `image-link-container`
+                    }
+                },
+                img({
+                    attributes: {
+                        class: 'item-thumbnail-image',
+                        src: thumbnail[0].url,
+                        alt: name
+                    }
+                })
             ),
             div({
                     attributes: {
@@ -140,7 +144,7 @@ export function generateSponsoredRecommendationItem({
                 }),
                 p({
                     attributes: {
-                        class: `${origin}-item-branding-name`,
+                        class: `item-branding-name`,
                         'data-testid': 'item-branding-name'
                     },
                     text: `by ${branding}`
@@ -167,20 +171,21 @@ export function generateOrganicRecommendationItem({
                 'data-testid': 'item-article',
                 'data-recommendation-type': `${origin}`
             },
-             styles: {
-                        backgroundImage: `url(${thumbnail[0].url})`,
-                        backgroundRepeat: 'no-repeat',
-                        backgroundSize: 'cover',
-                        border: '2px solid white',
-                        height: '200px'
-                    }
+            styles: {
+                backgroundImage: `url(${thumbnail[0].url})`,
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                border: '2px solid white',
+                height: '200px'
+            }
         },
         a({
-            attributes: {
-                href: url,
-                class: `link-container`,
-                'data-testid': 'image-link-container'
-            }},
+                attributes: {
+                    href: url,
+                    class: `link-container`,
+                    'data-testid': 'image-link-container'
+                }
+            },
             div({
                     attributes: {
                         class: `${origin}-text-content-container`,

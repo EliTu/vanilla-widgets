@@ -1,6 +1,6 @@
 .item-container {
     width: 100%;
-    
+
     .link-container {
         height: 100%;
         display: flex;
@@ -16,19 +16,18 @@
             background-color: rgba(180, 180, 180, 0.322);
         }
 
-        // SPONSORED WIDGET STYLES
-        .sponsored-image-link-container {
+        .image-link-container {
             width: 90%;
             height: 200px;
             display: flex;
             justify-content: center;
-
-            .sponsored-item-thumbnail-image {
+            
+            .item-thumbnail-image {
                 max-width: 100%;
                 height: auto;
             }
         }
-
+        
         .sponsored-text-content-container {
             display: flex;
             width: 90%;
@@ -40,13 +39,12 @@
                 margin-bottom: 0.5rem;
             }
 
-            .sponsored-item-branding-name {
+            .item-branding-name {
                 font-size: 13px;
                 font-weight: bold;
             }
         }
 
-        // ORGANIC WIDGET STYLES
         .organic-text-content-container {
             position: absolute;
             bottom: 0;
