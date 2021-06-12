@@ -73,10 +73,13 @@ export function appendText(element: HTMLElement, text: string) {
  * @param afterEndText a string to be appended after the child.
  */
 export function setElementChildren(element: HTMLElement, childElements: ChildrenType, afterEndText ? : string) {
-    for (const child of childElements) {
+    for(let i = 0; i < childElements.length; i++) {
+        const child = childElements[i];
+
         // first append the child to the parent
         element.append(child);
-        // insert any afterEnd strings right after the child is appended to a parent
-        if (afterEndText) child.insertAdjacentText('afterend', afterEndText);
+        
+        // insert any afterEnd strings right after the last child is appended to a parent
+        if (afterEndText && i === childElements.length - 1) child.insertAdjacentText('afterend', afterEndText);
     }
 }
