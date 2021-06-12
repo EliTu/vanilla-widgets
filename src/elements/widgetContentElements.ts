@@ -12,7 +12,7 @@ import {
     header,
     h2,
     section
-} from './elements';
+} from './commonElements';
 
 /**
  * Generates a section node that contains the widget's header and the content container.
@@ -67,22 +67,23 @@ export function generateWidgetHeaderByOrigin(origin: OriginOptions) {
  * @returns HTMLElement.
  */
 export function generateRecommendationItemByOrigin(publisherData: PublisherContentMetadata) {
-    const { origin } = publisherData;
-    
+    const {
+        origin
+    } = publisherData;
+
     switch (origin) {
         case OriginOptions.SPONSORED: {
             return generateSponsoredRecommendationItem(publisherData);
         }
-        
+
         case OriginOptions.ORGANIC: {
             return generateOrganicRecommendationItem(publisherData);
         }
 
         default: {
-            console.warn(`Trying to generate an unknown origin type: ${origin}`);
-            return;
+            throw new Error(`Trying to generate an unknown origin type: ${origin}`);
         }
-            
+
     }
 }
 
@@ -154,29 +155,28 @@ export function generateOrganicRecommendationItem({
             },
         },
         a({
-            attributes: {
-                href: url,
-                target: '_blank',
-                rel: 'noopener noreferrer',
-                class: 'image-link-container'
-            },
-            styles: {
-                backgroundImage: `url(${thumbnail[0].url})`
-            }
-        }, // TODO: CREATE THE CORRECT ITEM ELEMENT STRUCTURE
-        // img({
-        //     attributes: {
-        //         class: 'item-thumbnail-image',
-        //         src: thumbnail[0].url,
-        //         alt: name
-        //     }
-        // })
+                attributes: {
+                    href: url,
+                    target: '_blank',
+                    rel: 'noopener noreferrer',
+                    class: 'image-link-container'
+                },
+                styles: {
+                    backgroundImage: `url(${thumbnail[0].url})`
+                }
+            }, // TODO: CREATE THE CORRECT ITEM ELEMENT STRUCTURE
+            // img({
+            //     attributes: {
+            //         class: 'item-thumbnail-image',
+            //         src: thumbnail[0].url,
+            //         alt: name
+            //     }
+            // })
         ),
         div({
-                attributes: {
-                    class: 'text-content-container'
-                }
-            },
-        )
+            attributes: {
+                class: 'text-content-container'
+            }
+        }, )
     )
 }

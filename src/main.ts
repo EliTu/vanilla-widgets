@@ -1,5 +1,5 @@
 import './main.scss';
-import './elements/elements.scss';
+import './elements/element-styles.scss';
 import {
   HttpResult,
   UrlParams

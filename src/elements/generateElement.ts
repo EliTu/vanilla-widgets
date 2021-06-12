@@ -15,7 +15,7 @@ import isValidHTMLType from "../utils/isValidHTMLType";
  */
 export default function generateElement < Type extends keyof HTMLElementTagNameMap > (type: Type, propOptions: PropOptions, ...childElements: ChildrenType): HTMLElementTagNameMap[Type] {
     if(!isValidHTMLType(type)) {
-        console.warn(`Attempting to assign an invalid HTML element type: ${type}.`);
+        throw new Error(`Attempting to assign an invalid HTML element type: ${type}.`);
     }
     const element = document.createElement<Type>(type);
 
