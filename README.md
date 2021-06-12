@@ -4,7 +4,7 @@ Public URL: <http://vanilla-widgets.herokuapp.com/>
 
 ## Intro
 
-Vanilla Widgets is a lightweight and simple, yet very flexible recommendation widget app. Using the [Taboola](https://www.taboola.com) API to fetch the publisher recommendation data, the app knows how to dynamically display the correct recommendation widget with all publisher data, according to the data received, allowing to potentially integrate an unlimited amount of recommendation widget types in the future.
+Vanilla Widgets is a lightweight and simple, yet very flexible recommendation widget app. Using the [Taboola](https://www.taboola.com) API to fetch the publisher recommendation data, the app knows how to dynamically display the correct recommendation widget with all publisher data and correct headers, allowing to potentially integrate an unlimited amount of recommendation widget types in the future.
 
 No JS framework, UI libraries or any other 3rd party shipped dependencies were used in creating the app.
 
