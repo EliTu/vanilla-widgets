@@ -167,45 +167,40 @@ export function generateOrganicRecommendationItem({
                 'data-testid': 'item-article',
                 'data-recommendation-type': `${origin}`
             },
+             styles: {
+                        backgroundImage: `url(${thumbnail[0].url})`,
+                        backgroundRepeat: 'no-repeat',
+                        backgroundSize: 'cover',
+                        border: '2px solid white',
+                        height: '200px'
+                    }
         },
         a({
-                attributes: {
-                    href: url,
-                    target: '_blank',
-                    rel: 'noopener noreferrer',
-                    class: `${origin}-image-link-container`
-                },
-                styles: {
-                    backgroundImage: `url(${thumbnail[0].url})`,
-                    backgroundSize: 'auto',
-                    backgroundRepeat: 'no-repeat'
-                }
-            },
-            // img({
-            //     attributes: {
-            //         class: `${origin}-item-thumbnail-image`,
-            //         src: thumbnail[0].url,
-            //         alt: name
-            //     }
-            // }),
-            span({
-                attributes: {
-                    class: `${origin}-item-title`,
-                    'data-testid': 'organic-item-title'
-                },
-                text: name
-            })
-        ),
-        div({
             attributes: {
-                class: `${origin}-text-content-container`
-            }
-        }, p({
-            attributes: {
-                class: `${origin}-item-branding-name`,
-                'data-testid': 'organic-item-branding-name'
-            },
-            text: `by ${branding}`
-        }))
-    )
+                href: url,
+                class: `link-container`,
+                'data-testid': 'image-link-container'
+            }},
+            div({
+                    attributes: {
+                        class: `${origin}-text-content-container`,
+                        'data-testid': 'text-content-container'
+                    }
+                },
+                p({
+                    attributes: {
+                        class: 'item-text-content',
+                        'data-testid': 'item-text-content'
+                    },
+                    text: name
+                }),
+                p({
+                    attributes: {
+                        class: `${origin}-item-branding-name`,
+                        'data-testid': 'item-branding-name'
+                    },
+                    text: `More from: ${branding}`
+                })
+            )
+        ))
 }
