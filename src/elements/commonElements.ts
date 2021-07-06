@@ -8,7 +8,7 @@ import generateElement from './generateElement';
  * a constant list of HTML element types to generate with the generateElement function.
  * To generate more element types, simply add the type (tag name) as a string to the list.
  */
-const ELEMENT_TYPES_LIST = ['header', 'section', 'article', 'span', 'div', 'img', 'h2', 'a', 'p'];
+const ELEMENT_TYPES_LIST = ['header', 'section', 'article', 'span', 'div', 'img', 'h2', 'a', 'p'] as Array<keyof HTMLElementTagNameMap>;
 
 /**
  * Map over the element type list and with the help of some closure magic to pass around arguments, 
@@ -18,7 +18,7 @@ const ELEMENT_TYPES_LIST = ['header', 'section', 'article', 'span', 'div', 'img'
  */
 const [header, section, article, span, div, img, h2, a, p] = ELEMENT_TYPES_LIST.map(element =>
     (propOptions: PropOptions, ...childElements: ChildrenType) =>
-    generateElement((element as keyof HTMLElementTagNameMap), propOptions, ...childElements))
+    generateElement(element , propOptions, ...childElements))
 
 // Don't forget to export any newly added elements!
 export {
