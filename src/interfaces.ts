@@ -47,7 +47,7 @@ export interface HttpResult {
 
 export type ChildrenType = HTMLElement[];
 export interface PropOptions {
-    attributes ? : Record < string, string | boolean > ;
+    attributes ? : Record < string, string | boolean | Function> ;
     styles ? : Partial < CSSStyleDeclaration > ;
     text ? : string;
     afterEndText ? : string;
