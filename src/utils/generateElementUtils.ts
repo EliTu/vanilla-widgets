@@ -29,8 +29,8 @@ export function setAttributes(element: HTMLElement, attributes: PropOptions['att
     const attributeKeyValueArray = Object.entries(attributes);
     for (const [attributeNameKey, value] of attributeKeyValueArray) {
         /// set true boolean values without value, for example <button disabled>
+        if(typeof value === 'function' && attributeNameKey.startsWith('on')) element.addEventListener(attributeNameKey.substring(2).toLocaleLowerCase(), (e) => value(e));
         if (typeof value === 'boolean' && value) element.setAttribute(attributeNameKey, '');
-        // if(typeof value === 'function' && attributeNameKey.startsWith('on')) element.addEventListener(attributeNameKey.substring(2), (e) => value(e));
         else element.setAttribute(attributeNameKey, (value as string));
     }
 }

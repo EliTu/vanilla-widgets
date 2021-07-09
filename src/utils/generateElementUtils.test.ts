@@ -52,21 +52,6 @@ describe('Testing setAttributes function', () => {
         });
     });
 
-    it('Should correctly assign inline event handler functions', () => {
-        const dummyButton = document.createElement('button');
-        expect(dummyButton.hasAttribute('onclick')).toBe(false);
-
-        const buttonAttributes = {
-            onclick: (e:Event) => 'clicked'
-        };
-
-        setAttributes(dummyButton, buttonAttributes);
-
-        const expectedElementHTML = `<button onclick="e => 'clicked'"></button>`;
-        expect(dummyButton.hasAttribute('onclick')).toBe(true);
-        expect(dummyButton.outerHTML).toEqual(expectedElementHTML);
-    });
-
     it('Should short-circuit early if attributes is an empty object', () => {
         const dummyElement3 = document.createElement('div');
 
